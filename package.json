@@ -1,0 +1,19 @@
+{
+  "name": "wifi-serviceworker",
+  "version": "0.0.0",
+  "description": "A project to meet the 'lighthouse audit test' of [a URL that responds with a 200 when offline](https://developers.google.com/web/tools/lighthouse/audits/http-200-when-offline) and also gives some kind of visual responsive cue to the user that that would seem as if they are in fact online.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbr/wifiServiceWorker.git"
+  },
+  "author": "Emily Reese <emilyreese@fastmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/airbr/wifiServiceWorker/issues"
+  },
+  "homepage": "https://github.com/airbr/wifiServiceWorker#readme"
+}
