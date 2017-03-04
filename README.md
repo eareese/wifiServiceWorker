@@ -1,4 +1,14 @@
-###
+### Offline demo steps
+
+1. clone the repo
+2. run `http-server` or similar in the repo folder
+3. Visit localhost:8080 or whatever
+4. See regular content on page, service worker info in console
+5. kill `http-server`
+6. refresh localhost:8080
+7. See cached offline page instead of browser version
+
+---
 
 A project to meet the 'lighthouse audit test' of [a URL that responds with a 200 when offline](https://developers.google.com/web/tools/lighthouse/audits/http-200-when-offline) and also gives some kind of visual responsive cue to the user that that would seem as if they are in fact online.
 
@@ -17,3 +27,7 @@ Intended to be a re-usable module basically to add some kind of customizable fai
 
 [Future App Model: Advanced Service Worker (Chrome Dev Summit 2016)
 ](https://www.youtube.com/watch?v=J2dOTKBoTL4&t=305s)
+
+[MDN service worker basic example](https://github.com/mdn/sw-test)
+
+[Offline Fallback recipe](https://serviceworke.rs/offline-fallback.html)
