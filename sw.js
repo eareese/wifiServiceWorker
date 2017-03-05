@@ -1,6 +1,6 @@
-var CACHE_NAME = 'v1';
+var CACHE_NAME = 'demo-v1';
 
-var REQUIRED_FILES = [
+var FILES = [
   'index.html',
   'offline.html',
   'app.js'
@@ -8,38 +8,15 @@ var REQUIRED_FILES = [
 
 
 self.addEventListener('install', function(event) {
-
-  var offlineRequest = new Request('offline.html');
-
   event.waitUntil(caches.open(CACHE_NAME).then(function(cache) {
-    console.log('[install] Caches opened, adding core components to cache');
-    return cache.addAll(REQUIRED_FILES);
-  }).then(function() {
-    console.log('[install] All resources cached, good to go');
-    return self.skipWaiting();
-  }));
-
-  event.waitUntil(fetch(offlineRequest).then(function(response) {
-    return caches.open('offline').then(function(cache) {
-      console.log('[oninstall] Cached offline page', response.url);
-      return cache.put(offlineRequest, response);
-    });
-  }));
-});
-
-self.addEventListener('activate', function(event) {
-  console.log('[activate] Activating SW');
-  console.log('[activate] Claiming SW');
-  event.waitUntil(self.clients.claim());
+    return cache.addAll(FILES);
+  }).then(function() { return self.skipWaiting(); }));
 });
 
 self.addEventListener('fetch', function(event) {
-
-  var request = event.request;
-  if (request.method === 'GET') {
-    event.respondWith(fetch(request).catch(function(error) {
-      console.error('[onfetch] Failed. Serving fallback: ', error);
-      return caches.open('offline').then(function(cache) {
+  if (event.request.mode == 'navigate') {
+    event.respondWith(fetch(event.request).catch(function(error) {
+      return caches.open(CACHE_NAME).then(function(cache) {
         return cache.match('offline.html');
       });
     }));
